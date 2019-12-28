@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import CheckIn from './components/CheckIn/CheckIn';
+import CheckOut from './components/CheckOut/CheckOut';
+import Lookup from './components/Lookup/Lookup';
+import { getMockAttendees } from './services/MockData';
+const attendees = getMockAttendees();
 
 const App: React.FC = () => {
+
+  const [tab, setTab] = React.useState(0);
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => setTab(0)}>Check In</button>
+      <button onClick={() => setTab(1)}>Check Out</button>
+      <button onClick={() => setTab(2)}>Lookup</button>
+      {getPage(tab)}
     </div>
   );
 }
 
+function getPage(tab: number) {
+  switch (tab) {
+    case 0:
+      return (<CheckIn attendees={attendees} />)
+    case 1:
+      return (<CheckOut attendees={attendees} />)
+    case 2:
+      return (<Lookup attendees={attendees} />)
+    default:
+      return (<CheckIn attendees={attendees} />)
+  }
+}
 export default App;

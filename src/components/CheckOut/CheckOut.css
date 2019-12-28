@@ -1,0 +1,17 @@
+.root {
+    color: black;
+}
+
+
+.attendee-contaner {
+padding: 1rem;
+}
+
+.attendee-card {
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    background-color: gray;
+    margin: 1rem 0;
+    padding: 1rem;
+}
