@@ -1,21 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './CheckInButton.css';
 
-const CheckInButton: React.FC = () => {
+export interface ICheckInButtonProps {
+    onClick(): void;
+    checkedIn: boolean;
+}
 
-    const [checkedIn, setCheckedIn] = React.useState(false);
-    function onClick() {
-        setCheckedIn(!checkedIn);
-    }
-
+const CheckInButton: React.FC<ICheckInButtonProps> = (props) => {
 
     return (
         <button
-            onClick={() => onClick()}
-            style={checkedIn ? { backgroundColor: "red" } : { backgroundColor: "green" }}
+            onClick={() => props.onClick()}
+            style={props.checkedIn ? { backgroundColor: "red" } : { backgroundColor: "green" }}
         >
-            {checkedIn ? "Check Out" : "Check In"}
+            {props.checkedIn ? "Check Out" : "Check In"}
         </button>
     );
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './Lookup.css';
 import Attendee from '../../models/Attendee';
 
