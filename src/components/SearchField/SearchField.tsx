@@ -3,6 +3,7 @@ import './SearchField.css';
 
 export interface ISearchFieldProps {
     onChange(event: React.ChangeEvent<HTMLInputElement>): void;
+
 }
 
 const SearchField: React.FC<ISearchFieldProps> = (props) => {

@@ -1,3 +1,12 @@
 .root {
     color: black;
 }
+
+.registrations {
+    display: flex;
+    flex-direction: column;
+}
+
+.attendee {
+    display: flex;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import CheckIn from './components/CheckIn/CheckIn';
 import Lookup from './components/Lookup/Lookup';
-import { getMockAttendees } from './services/MockData';
+import { getMockAttendees, getMockRegistrations } from './services/MockData';
 import Dashboard from './components/Dashboard/Dashboard';
 import Attendee from './models/Attendee';
 
@@ -10,15 +10,13 @@ const App: React.FC = () => {
 
   const [tab, setTab] = React.useState(1); // TODO switch to 0
   const [attendees, setAttendees] = React.useState(getMockAttendees());
-
+  const [registrations, setRegistrations] = React.useState(getMockRegistrations());
   function setAttendeeCheckIn(attendee: Attendee, checkedIn: boolean) {
     const foundAttendee = attendees.find((a: Attendee) => (a === attendee));
     if (foundAttendee) {
       foundAttendee.checkedIn = checkedIn;
       setAttendees([...attendees]);
     }
-
-    console.log("Check in/out", attendee);
   }
 
   function getPage(tab: number) {
@@ -28,7 +26,7 @@ const App: React.FC = () => {
       case 1:
         return (<CheckIn attendees={attendees} checkIn={(attendee, checkedIn) => setAttendeeCheckIn(attendee, checkedIn)} />)
       case 2:
-        return (<Lookup attendees={attendees} />)
+        return (<Lookup registrations={registrations} />)
       default:
         return (<Dashboard attendees={attendees} />)
     }
