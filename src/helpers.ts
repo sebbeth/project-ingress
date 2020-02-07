@@ -1,15 +1,24 @@
 import Attendee from "./models/Attendee";
+import Room from "./models/Room";
 
-export function getSections(attendees: Attendee[]) {
-    const sections: string[] = [];
-    attendees.forEach(attendee => {
-        if (sections.indexOf(attendee.room) === -1) {
-            sections.push(attendee.room);
-        }
-    });
-    return sections;
+export function getRooms(attendees: Attendee[]) {
+    const rooms: Room[] = [
+        { id: 1, title: "Room A" },
+        { id: 2, title: "Room B" },
+        { id: 3, title: "Room C" }
+    ];
+
+    return rooms;
 }
 
-export function getAttendeesForSection(section: string, allAttendees: Attendee[]) {
-    return allAttendees.filter(attendee => (attendee.room === section));
+export function getRoom(id: number, rooms: Room[]) {
+    return rooms.find((room) => (room.id === id));
+}
+
+// export function getAttendeesForSection(section: string, allAttendees: Attendee[]) {
+//     return allAttendees.filter(attendee => (attendee.room === section));
+// }
+
+export function getAttendeesFromFirebase() {
+
 }

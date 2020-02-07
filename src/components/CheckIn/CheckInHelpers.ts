@@ -1,10 +1,11 @@
 import Attendee from "../../models/Attendee";
+import Room from "../../models/Room";
 
-export function filterAttendeesByRoom(attendees: Attendee[], room: string) {
-    if (room === "") {
+export function filterAttendeesByRoom(attendees: Attendee[], roomId: number) {
+    if (roomId === 0) {
         return attendees;
     }
-    return attendees.filter((attendee: Attendee) => (attendee.room === room));
+    return attendees.filter((attendee: Attendee) => (attendee.room === roomId));
 }
 
 export function filterAttendeesBySearch(attendees: Attendee[], search: string) {
