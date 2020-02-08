@@ -3,15 +3,16 @@ import './Dashboard.css';
 import Attendee from '../../models/Attendee';
 import { getRooms } from '../../helpers';
 import { createAttendee } from '../../data/FirebaseHelpers';
+import Event from '../../models/Event';
 
 export interface IDashboardProps {
-    attendees: Attendee[];
+    event: Event;
 }
 
 
 const Dashboard: React.FC<IDashboardProps> = (props) => {
-
-    const rooms = getRooms(props.attendees);
+    const { event } = props;
+    const rooms = getRooms(event.attendees);
     return (
         <div className="root">
             <div>
@@ -20,7 +21,7 @@ const Dashboard: React.FC<IDashboardProps> = (props) => {
             {
                 rooms.map((room, index) => {
                     // const registeredAttendees = getAttendeesForSection(section, props.attendees);
-                    const checkedInAttendees = props.attendees.filter(attendee => (attendee.checkedIn));
+                    const checkedInAttendees = (Array.isArray(event.attendees)) ? event.attendees.filter(attendee => (attendee.checkedIn)) : [];
                     return (
                         <>
                             <div>{room.title}</div>
@@ -32,7 +33,7 @@ const Dashboard: React.FC<IDashboardProps> = (props) => {
                 })
             }
             #testing#
-            <button onClick={() => createAttendee()}>Add Attendee</button>
+            <button onClick={() => createAttendee(event.id)}>Add Attendee</button>
         </div>
     );
 }

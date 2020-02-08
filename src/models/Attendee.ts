@@ -4,7 +4,7 @@ export default class Attendee {
     public firstname: string;
     public surname: string;
     public checkedIn: boolean = false;
-    public room: number;
+    public room: string;
     constructor(attendee: any, id?: string) {
         if (id) this.id = id;
         if (attendee.id) this.id = attendee.id;
@@ -12,9 +12,5 @@ export default class Attendee {
         this.surname = attendee.surname;
         this.room = attendee.room;
         this.checkedIn = attendee.checkedIn;
-    }
-
-    public getFullname() {
-        return this.firstname + " " + this.surname;
     }
 }

@@ -2,11 +2,16 @@
     color: black;
 }
 
-.registrations {
+.attendees {
     display: flex;
     flex-direction: column;
+    padding: 0 4rem;
 }
 
 .attendee {
     display: flex;
+    justify-content: space-between;
+    background-color: lightgray;
+    width: 100%;
+    margin-bottom: 1rem;
 }

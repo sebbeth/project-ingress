@@ -17,8 +17,16 @@ firebase.initializeApp(firebaseConfig);
 export default firebase;
 
 
-export function getAttendeesRef() {
-    return firebase.database().ref('attendees');
+export function getAttendeesRef(eventId: string) {
+    return firebase.database().ref(`events/${eventId}/attendees`);
+}
+
+export function getEventsRef() {
+    return firebase.database().ref('events')
+}
+
+export function getEventRef(eventId: string) {
+    return firebase.database().ref('events/' + eventId);
 }
 
 export function selectEvent(event: Event) {
@@ -35,12 +43,12 @@ export function updateEvent(event: Event) {
     firebase.database().ref('events/' + event.id).set(event);
 }
 
-export function updateAttendee(attendee: Attendee) {
-    firebase.database().ref('attendees/' + attendee.id).set(attendee);
+export function updateAttendee(eventId: string, attendee: Attendee) {
+    firebase.database().ref(`events/${eventId}/attendees/${attendee.id}`).set(attendee);
 }
 
-export function createAttendee() {
-    const key = firebase.database().ref().child('attendees').push().key;
+export function createAttendee(eventId: string) {
+    const key = firebase.database().ref().child(`events/${eventId}/attendees`).push().key;
     const newAttendee = new Attendee({
         id: key,
         firstname: "Billy",
@@ -48,6 +56,6 @@ export function createAttendee() {
         checkedIn: false,
         room: 2
     });
-    updateAttendee(newAttendee);
+    updateAttendee(eventId, newAttendee);
 
 }
