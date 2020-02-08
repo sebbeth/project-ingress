@@ -5,12 +5,17 @@ import Lookup from './components/Lookup/Lookup';
 import { getMockAttendees, getMockRegistrations } from './data/MockData';
 import Dashboard from './components/Dashboard/Dashboard';
 import Attendee from './models/Attendee';
-import { getAttendeesRef, updateAttendee } from './data/FirebaseHelpers';
+import { getAttendeesRef, updateAttendee, selectEvent, createEvent } from './data/FirebaseHelpers';
 import { useObject, useList } from 'react-firebase-hooks/database';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Events from './components/Events/Events';
 
 const App: React.FC = () => {
-
-  const [tab, setTab] = useState(1); // TODO switch to 0
   // const [attendees, setAttendees] = useState(getMockAttendees());
   // const attendees = useAttendees(getAttendeesRef());
   // const [attendees, setAttendees] = useState([] as Attendee[]);
@@ -22,39 +27,36 @@ const App: React.FC = () => {
     })
   }
 
-
   console.log(attendees);
   const [registrations, setRegistrations] = useState(getMockRegistrations());
 
-  // function setAttendeeCheckIn(attendee: Attendee, checkedIn: boolean) {
-  //   const foundAttendee = attendees.find((a: Attendee) => (a === attendee));
-  //   if (foundAttendee) {
-  //     foundAttendee.checkedIn = checkedIn;
-  //     updateAttendee(foundAttendee);
-  //     // setAttendees([...attendees]);
-  //   }
-  // }
-
-  function getPage(tab: number) {
-    switch (tab) {
-      case 0:
-        return (<Dashboard attendees={attendees} />)
-      case 1:
-        return (<CheckIn attendees={attendees} updateAttendee={(attendee) => updateAttendee(attendee)} />)
-      case 2:
-        return (<Lookup registrations={registrations} />)
-      default:
-        return (<Dashboard attendees={attendees} />)
-    }
-  }
-
   return (
-    <div className="App">
-      <button onClick={() => setTab(0)}>Dashboard</button>
-      <button onClick={() => setTab(1)}>Check In</button>
-      <button onClick={() => setTab(2)}>Lookup</button>
-      {getPage(tab)}
-    </div>
+    <Router>
+      <div className="App">
+        <Link to="/"><button>Dashboard</button></Link>
+        <Link to="/checkin"><button>Check In</button></Link>
+        <Link to="/lookup"><button>Lookup</button></Link>
+        <Link to="/events"><button>Switch Event</button></Link>
+        <Switch>
+          <Route exact path="/">
+            <Dashboard attendees={attendees} />
+          </Route>
+          <Route path="/checkin">
+            <CheckIn attendees={attendees} updateAttendee={(attendee) => updateAttendee(attendee)} />
+          </Route>
+          <Route path="/lookup">
+            <Lookup registrations={registrations} />
+          </Route>
+          <Route path="/events">
+            <Events
+              events={[]}
+              selectEvent={(event) => selectEvent(event)}
+              createEvent={(event) => createEvent(event)}
+            />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

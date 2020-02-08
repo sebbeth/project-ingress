@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 import Attendee from '../models/Attendee';
+import Event from '../models/Event';
 
 const firebaseConfig = {
     apiKey: "AIzaSyD2WqcmVMw358QDhSDqjUz3oAESgae6quI",
@@ -18,6 +19,20 @@ export default firebase;
 
 export function getAttendeesRef() {
     return firebase.database().ref('attendees');
+}
+
+export function selectEvent(event: Event) {
+
+}
+
+export function createEvent(event: Event) {
+    const key = firebase.database().ref().child('events').push().key;
+    if (key) event.id = key;
+    updateEvent(event);
+}
+
+export function updateEvent(event: Event) {
+    firebase.database().ref('events/' + event.id).set(event);
 }
 
 export function updateAttendee(attendee: Attendee) {

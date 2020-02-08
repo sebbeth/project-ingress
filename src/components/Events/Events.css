@@ -1,3 +1,11 @@
 .root {
     color: black;
 }
+
+.events {
+padding: 2rem;
+}
+
+.event {
+display: flex;
+}
