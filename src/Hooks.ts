@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Event from "./models/Event";
 import { useObject, useList } from 'react-firebase-hooks/database';
+import Room from "./models/Room";
 import Attendee from "./models/Attendee";
 
 
@@ -30,6 +31,8 @@ export function useEvent(ref: any) {
     return { event, loading, error };
 }
 
+
+
 export function useAttendees(ref: any) {
     const [items, loading, error] = useList(ref);
     const [attendees, setAttendees] = useState([] as Attendee[]);
@@ -43,4 +46,20 @@ export function useAttendees(ref: any) {
         }
     }, [items]);
     return { attendees, loading, error };
+}
+
+
+export function useRooms(ref: any) {
+    const [items, loading, error] = useList(ref);
+    const [rooms, setRooms] = useState([] as Room[]);
+    useEffect(() => {
+        if (items && items.length > 0) {
+            const newRooms: Room[] = [];
+            items.forEach((item) => {
+                newRooms.push(new Room(item.val()));
+            });
+            setRooms(newRooms);
+        }
+    }, [items]);
+    return { rooms, loading, error };
 }

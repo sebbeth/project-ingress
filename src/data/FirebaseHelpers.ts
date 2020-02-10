@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 import Attendee from '../models/Attendee';
 import Event from '../models/Event';
+import Room from '../models/Room';
 
 const firebaseConfig = {
     apiKey: "AIzaSyD2WqcmVMw358QDhSDqjUz3oAESgae6quI",
@@ -25,6 +26,10 @@ export function getEventsRef() {
     return firebase.database().ref('events')
 }
 
+export function getRoomsRef(eventId: string) {
+    return firebase.database().ref(`events/${eventId}/rooms`);
+}
+
 export function getEventRef(eventId: string) {
     return firebase.database().ref('events/' + eventId);
 }
@@ -35,12 +40,28 @@ export function selectEvent(event: Event) {
 
 export function createEvent(event: Event) {
     const key = firebase.database().ref().child('events').push().key;
-    if (key) event.id = key;
-    updateEvent(event);
+    if (key) {
+        event.id = key;
+        updateEvent(event);
+    }
 }
 
 export function updateEvent(event: Event) {
     firebase.database().ref('events/' + event.id).set(event);
+}
+
+export function createRoom(eventId: string, room: Room) {
+    console.log("create");
+
+    const key = firebase.database().ref().child(`events/${eventId}/rooms`).push().key;
+    if (key) {
+        room.id = key;
+        updateRoom(eventId, room);
+    }
+}
+
+export function updateRoom(eventId: string, room: Room) {
+    firebase.database().ref(`events/${eventId}/rooms/${room.id}`).set(room);
 }
 
 export function updateAttendee(eventId: string, attendee: Attendee) {

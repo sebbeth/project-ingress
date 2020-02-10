@@ -1,0 +1,14 @@
+.root {
+    color: black;
+}
+
+.rooms {
+padding: 0 2rem;
+}
+
+.roomItem {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
