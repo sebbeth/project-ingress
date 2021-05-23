@@ -1,5 +1,5 @@
 import React from 'react';
-import './CheckIn.css';
+import './CheckIn.scss';
 import Attendee from '../../models/Attendee';
 import CheckInButton from '../CheckInButton/CheckInButton';
 import SearchField from '../SearchField/SearchField';

@@ -1,5 +1,5 @@
 import React from 'react';
-import './SearchField.css';
+import './SearchField.scss';
 
 export interface ISearchFieldProps {
     onChange(event: React.ChangeEvent<HTMLInputElement>): void;

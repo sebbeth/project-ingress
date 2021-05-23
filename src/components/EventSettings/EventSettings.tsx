@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import './EventSettings.css';
+import './EventSettings.scss';
 import Attendee from '../../models/Attendee';
 import Room from '../../models/Room';
 import Event from '../../models/Event';

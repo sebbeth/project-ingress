@@ -1,5 +1,5 @@
 import React from 'react';
-import './Events.css';
+import './Events.scss';
 import Event from '../../models/Event';
 import Room from '../../models/Room';
 import Attendee from '../../models/Attendee';

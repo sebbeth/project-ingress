@@ -1,5 +1,6 @@
 import React from 'react';
-import './CheckInButton.css';
+import './CheckInButton.scss';
+import Button from 'react-bootstrap/Button';
 
 export interface ICheckInButtonProps {
     onClick(): void;
@@ -9,12 +10,12 @@ export interface ICheckInButtonProps {
 const CheckInButton: React.FC<ICheckInButtonProps> = (props) => {
 
     return (
-        <button
+        <Button
             onClick={() => props.onClick()}
             style={props.checkedIn ? { backgroundColor: "red" } : { backgroundColor: "green" }}
         >
             {props.checkedIn ? "Check Out" : "Check In"}
-        </button>
+        </Button>
     );
 }
 

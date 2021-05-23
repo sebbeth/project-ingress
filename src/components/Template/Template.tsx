@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import './Template.css';
+import './Template.scss';
 import Attendee from '../../models/Attendee';
 
 export interface ITemplateProps {

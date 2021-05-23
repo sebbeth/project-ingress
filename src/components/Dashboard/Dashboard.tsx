@@ -1,9 +1,9 @@
 import React from 'react';
-import './Dashboard.css';
-import Attendee from '../../models/Attendee';
+import './Dashboard.scss';
 import { getRooms } from '../../helpers';
 import { createAttendee } from '../../data/FirebaseHelpers';
 import Event from '../../models/Event';
+import Button from 'react-bootstrap/Button';
 
 export interface IDashboardProps {
     event: Event;
@@ -33,7 +33,7 @@ const Dashboard: React.FC<IDashboardProps> = (props) => {
                 })
             }
             #testing#
-            <button onClick={() => createAttendee(event.id)}>Add Attendee</button>
+            <Button onClick={() => createAttendee(event.id)}>Add Attendee</Button>
         </div>
     );
 }

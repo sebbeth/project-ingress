@@ -1,5 +1,5 @@
 import React from 'react';
-import './Lookup.css';
+import './Lookup.scss';
 import Attendee from '../../models/Attendee';
 import { getAttendeeFullName, getRoom } from '../../helpers';
 import Room from '../../models/Room';

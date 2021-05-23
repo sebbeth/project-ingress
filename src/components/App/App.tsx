@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import CheckIn from '../CheckIn/CheckIn';
 import Lookup from '../Lookup/Lookup';
 import { getMockAttendees, getMockRegistrations } from '../../data/MockData';
