@@ -23,12 +23,12 @@ const Dashboard: React.FC<IDashboardProps> = (props) => {
                     // const registeredAttendees = getAttendeesForSection(section, props.attendees);
                     const checkedInAttendees = (Array.isArray(event.attendees)) ? event.attendees.filter(attendee => (attendee.checkedIn)) : [];
                     return (
-                        <>
+                        <span key={index}>
                             <div>{room.title}</div>
                             {/* <div>Registered: {registeredAttendees.length}</div> */}
                             <div>Checked-In: {checkedInAttendees.length}</div>
                             <br />
-                        </>
+                        </span>
                     )
                 })
             }
