@@ -2,10 +2,10 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
   Link,
   useParams,
   useRouteMatch,
+  Route,
 } from "react-router-dom";
 import {
     createRoom,
@@ -21,6 +21,7 @@ import Attendees from "../Attendees/Attendees";
 import CheckIn from "../CheckIn/CheckIn";
 import EventSettings from "../EventSettings/EventSettings";
 import "./Event.scss";
+import Dashboard from "../Dashboard/Dashboard";
 
 export interface IEventProps {}
 
@@ -50,6 +51,9 @@ const Event: React.FC<IEventProps> = (props) => {
       <div>
         <span>Event ID: {eventId}</span>
         <div>
+        <Link to={`${url}/`}>
+            <button>Overview</button>
+          </Link>
           <Link to={`${url}/checkin`}>
             <button>Check In</button>
           </Link>
@@ -65,6 +69,9 @@ const Event: React.FC<IEventProps> = (props) => {
         </div>
       </div>
       <Switch>
+      <Route exact path={`${path}/`}>
+        <Dashboard event={event} />
+        </Route>
         <Route exact path={`${path}/checkin`}>
           <CheckIn
             rooms={rooms}

@@ -32,11 +32,7 @@ const App: React.FC = () => {
     setSelectedEventId(eventId);
   }
 
-  const {
-    events,
-    loading: eventsLoading,
-    error: eventsError,
-  } = useEvents(getEventsRef());
+
   const {
     event,
     loading: eventLoading,

@@ -6,7 +6,7 @@ export function getAttendeeFullName(attendee: Attendee) {
     return attendee.firstname + " " + attendee.surname;
 }
 
-export function getRooms(attendees: Attendee[]) {
+export function getRooms() {
     const rooms: Room[] = [
         { id: "1", title: "Room A" },
         { id: "2", title: "Room B" },
