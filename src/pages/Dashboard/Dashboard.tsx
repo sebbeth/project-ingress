@@ -4,6 +4,7 @@ import { getRooms } from '../../helpers';
 import { createAttendee } from '../../data/FirebaseHelpers';
 import Event from '../../models/Event';
 import Button from 'react-bootstrap/Button';
+import RoomsList from '../../components/RoomsList/RoomsList';
 
 export interface IDashboardProps {
     event: Event;
@@ -12,7 +13,7 @@ export interface IDashboardProps {
 
 const Dashboard: React.FC<IDashboardProps> = (props) => {
     const { event } = props;
-    const rooms = getRooms(event.attendees);
+    const rooms = getRooms();
     return (
         <div className="root">
             <div>
@@ -32,6 +33,7 @@ const Dashboard: React.FC<IDashboardProps> = (props) => {
                     )
                 })
             }
+            <RoomsList />
             #testing#
             <Button onClick={() => createAttendee(event.id)}>Add Attendee</Button>
         </div>

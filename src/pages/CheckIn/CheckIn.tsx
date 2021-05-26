@@ -1,11 +1,10 @@
 import React from 'react';
 import './CheckIn.scss';
 import Attendee from '../../models/Attendee';
-import CheckInButton from '../CheckInButton/CheckInButton';
-import SearchField from '../SearchField/SearchField';
-import { getRooms, getRoom, getAttendeeFullName } from '../../helpers';
+import { getRoom, getAttendeeFullName } from '../../helpers';
 import { filterAttendeesByRoom, filterAttendeesBySearch } from "./CheckInHelpers";
 import Room from '../../models/Room';
+import CheckInButton from '../../components/CheckInButton/CheckInButton';
 export interface ICheckInProps {
     attendees: Attendee[];
     rooms: Room[];
