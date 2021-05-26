@@ -32,18 +32,18 @@ const Event: React.FC<IEventProps> = (props) => {
 
   const {
     event,
-    loading: eventLoading,
-    error: eventError,
+    // loading: eventLoading,
+    // error: eventError,
   } = useEvent(getEventRef(eventId ?? ""));
   const {
     attendees,
-    loading: attendeesLoading,
-    error: attendeesError,
+    // loading: attendeesLoading,
+    // error: attendeesError,
   } = useAttendees(getAttendeesRef(eventId ?? ""));
   const {
     rooms,
-    loading: roomsLoading,
-    error: roomsError,
+    // loading: roomsLoading,
+    // error: roomsError,
   } = useRooms(getRoomsRef(eventId ?? ""));
 
   return (

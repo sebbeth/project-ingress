@@ -1,7 +1,5 @@
 import React from 'react';
 import './Account.scss';
-import Attendee from '../../models/Attendee';
-
 export interface IAccountProps {
 }
 

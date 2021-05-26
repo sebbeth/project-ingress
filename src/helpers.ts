@@ -1,6 +1,5 @@
 import Attendee from "./models/Attendee";
 import Room from "./models/Room";
-import Event from "./models/Event";
 
 export function getAttendeeFullName(attendee: Attendee) {
     return attendee.firstname + " " + attendee.surname;

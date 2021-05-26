@@ -9,8 +9,8 @@ export interface IHomeProps {}
 const Home: React.FC<IHomeProps> = (props) => {
     const {
         events,
-        loading: eventsLoading,
-        error: eventsError,
+        // loading: eventsLoading,
+        // error: eventsError,
       } = useEvents(getEventsRef());
   return (
     <div>

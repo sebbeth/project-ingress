@@ -1,6 +1,5 @@
 import React from "react";
 import "./RoomsList.scss";
-import Attendee from "../../models/Attendee";
 import { getRooms } from "../../helpers";
 import Room from "../../models/Room";
 import { Link, useRouteMatch } from "react-router-dom";

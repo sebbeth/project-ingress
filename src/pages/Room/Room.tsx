@@ -1,6 +1,5 @@
 import React from 'react';
 import './Room.scss';
-import Attendee from '../../models/Attendee';
 import { useParams } from 'react-router';
 
 export interface IRoomProps {
