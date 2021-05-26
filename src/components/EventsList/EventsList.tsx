@@ -1,49 +1,56 @@
 import React from "react";
 import "./EventsList.scss";
 import Event from "../../models/Event";
-import Room from "../../models/Room";
-import Attendee from "../../models/Attendee";
-import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
+import { Card, Spinner } from "react-bootstrap";
+import { useEvents } from "../../Hooks";
+import { getEventsRef } from "../../data/FirebaseHelpers";
 
 export interface IEventsListProps {
-  events: Event[];
   createEvent(event: Event): void;
 }
 
-function generateNewEvent() {
-  return new Event({
-    name: "New Event",
-    attendees: [
-      new Attendee({
-        firstname: "Billy",
-        surname: "Smith",
-        checkedIn: false,
-        room: "a",
-      }),
-    ],
-    rooms: [
-      new Room({ title: "Room A" }),
-      new Room({ title: "Room B" }),
-      new Room({ title: "Room C" }),
-    ],
-  });
-}
+// function generateNewEvent() {
+//   return new Event({
+//     name: "New Event",
+//     attendees: [
+//       new Attendee({
+//         firstname: "Billy",
+//         surname: "Smith",
+//         checkedIn: false,
+//         room: "a",
+//       }),
+//     ],
+//     rooms: [
+//       new Room({ title: "Room A" }),
+//       new Room({ title: "Room B" }),
+//       new Room({ title: "Room C" }),
+//     ],
+//   });
+// }
 
 const EventsList: React.FC<IEventsListProps> = (props) => {
-  return (
-    <div className="root">
-      <div>EventsList</div>
+  const {
+    events,
+    loading: eventsLoading,
+    error: eventsError,
+  } = useEvents(getEventsRef());
 
-      <button onClick={() => props.createEvent(generateNewEvent())}>
-        Add Event{" "}
-      </button>
-      <div className={"events"}>
-        {props.events.map((event: Event, index: number) => (
-          <EventItem key={index} event={event} />
-        ))}
-      </div>
-    </div>
+  return (
+    <>
+      {eventsLoading && (
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      )}
+      {!eventsLoading && !eventsError && (
+        <div className={"events"}>
+          {events.map((event, index) => (
+            <EventsListItem key={index} event={event} />
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
@@ -52,14 +59,23 @@ interface IEventProps {
   key: number;
 }
 
-const EventItem: React.FC<IEventProps> = (props) => {
+const EventsListItem: React.FC<IEventProps> = (props) => {
   const { event, key } = props;
   return (
-    <div className={"event"} key={key}>
-      <div>{event.name}</div>
-      <Link to="/event/123">
-      <Button >View Event</Button>
-      </Link>
+    <div key={key}>
+      <Card>
+        <Card.Body>
+          <Card.Title>{event.name}</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">dd/mm/yyyy</Card.Subtitle>
+          <Card.Text>Description</Card.Text>
+          <Link to={`/event/${event.id}/settings`}>
+            <Card.Link>Settings</Card.Link>
+          </Link>
+          <Link to={`/event/${event.id}`}>
+            <Card.Link>View Event</Card.Link>
+          </Link>
+        </Card.Body>
+      </Card>
     </div>
   );
 };
