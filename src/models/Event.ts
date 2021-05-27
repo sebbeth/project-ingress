@@ -3,14 +3,17 @@ import Room from "./Room";
 
 export default class Event {
 
-    public id: string;
-    public name: string;
-    public startDate: Date;
-    public endDate: Date;
-    public attendees: Attendee[];
-    public rooms: Room[];
+    public id: string = "";
+    public name: string = "";
+    public startDate: Date = new Date();
+    public endDate: Date = new Date();
+    public attendees: Attendee[] = [];
+    public rooms: Room[] = [];
 
-    constructor(event: any) {
+    constructor(event?: any) {
+        if (!event) {
+            return this;
+        }
         this.id = event.id ? event.id : null;
         this.name = event.name;
         this.startDate = event.startDate ? event.startDate : null;

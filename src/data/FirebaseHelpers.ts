@@ -50,6 +50,10 @@ export function updateEvent(event: Event) {
     firebase.database().ref('events/' + event.id).set(event);
 }
 
+export function deleteEvent(event: Event) {
+    firebase.database().ref('events/' + event.id).remove();
+}
+
 export function createRoom(eventId: string, room: Room) {
     console.log("create");
 
