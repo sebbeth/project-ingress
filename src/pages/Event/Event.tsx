@@ -83,7 +83,7 @@ const Event: React.FC<IEventProps> = (props) => {
             <AddAttendee/>
         </Route>
         <Route exact path={`${path}/settings`}>
-            <EventSettings event={event} rooms={rooms} createRoom={(room) => createRoom(event.id, room)} />
+            <EventSettings event={event} rooms={rooms} />
         </Route>
         <Route exact path={`${path}/attendees`}>
             <Attendees/>
